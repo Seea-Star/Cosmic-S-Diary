@@ -22,10 +22,10 @@
       background-color: #111111;
       color: #111111;
       font-family: 'Indie Flower', 'Nanum Pen Script', cursive;
-      padding: 15px 10px;
+      padding: 20px 10px;
       display: flex;
       justify-content: center;
-      align-items: flex-start; /* Parte tutto dall'alto */
+      align-items: flex-start;
       min-height: 100vh;
     }
 
@@ -36,30 +36,37 @@
       display: grid;
       grid-template-columns: 2.2fr 0.8fr;
       gap: 20px;
-      align-items: start; /* Allineato rigorosamente in alto */
+      align-items: start;
     }
 
-    /* DIARY COVER / HEADER IMAGE AREA */
+    /* DIARY COVER / HEADER IMAGE AREA (Centered, no borders/shadows) */
     .diary-cover-container {
       grid-column: 1 / -1;
       width: 100%;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 5px;
+      justify-content: center;
+      margin-bottom: 10px;
     }
 
     .diary-cover-img {
-      width: 100%;
-      max-height: 220px;
-      object-fit: cover;
-      border: 2px solid #111111;
-      border-radius: 20px;
-      box-shadow: 4px 4px 0px #F3EEDA;
+      max-width: 100%;
+      width: 450px; /* Dimensione ideale per il titolo/copertina */
+      height: auto;
       display: block;
+      border: none;
+      box-shadow: none;
+      background: transparent;
     }
 
-    /* LEFT SECTION: SINGLE DIARY PAGE */
+    /* MOBILE MENU TOGGLE CONTAINER (Top right on mobile) */
+    .mobile-header-bar {
+      display: none;
+      grid-column: 1 / -1;
+      justify-content: flex-end;
+      margin-bottom: 5px;
+    }
+
+    /* LEFT SECTION: DIARY PAGES */
     .diary-container {
       display: flex;
       flex-direction: column;
@@ -120,7 +127,7 @@
       filter: drop-shadow(2px 3px 0px rgba(0,0,0,0.15));
     }
 
-    /* RIGHT SECTION: SIDEBAR (NO WHITE RECTANGLES, ALIGNED TOP) */
+    /* RIGHT SECTION: SIDEBAR */
     .sidebar {
       display: flex;
       flex-direction: column;
@@ -128,7 +135,7 @@
     }
 
     .widget-box {
-      background: #F3EEDA; /* Sfondo coerente panna anziché bianco */
+      background: #F3EEDA;
       border: 2px solid #111111;
       border-radius: 20px;
       padding: 16px;
@@ -187,7 +194,7 @@
       font-size: 0.8rem;
       font-weight: 800;
       text-decoration: none;
-      text-align: center;
+      text-align: left;
       box-shadow: 2px 2px 0px #111111;
       transition: transform 0.1s ease;
     }
@@ -199,19 +206,19 @@
     .btn-home-nav {
       background: #ffffff;
       color: #111111;
+      text-align: center;
     }
 
     /* MOBILE MENU TOGGLE */
     .mobile-menu-toggle {
-      display: none;
       background: #F3EEDA;
       color: #111111;
       border: 2px solid #111111;
       border-radius: 10px;
-      padding: 6px 12px;
+      padding: 6px 14px;
       font-family: 'Quicksand', sans-serif;
       font-weight: 800;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       cursor: pointer;
       box-shadow: 2px 2px 0px #111111;
     }
@@ -222,10 +229,8 @@
         grid-template-columns: 1fr;
       }
 
-      .mobile-menu-toggle {
-        display: block;
-        margin-bottom: 10px;
-        justify-self: flex-end;
+      .mobile-header-bar {
+        display: flex;
       }
 
       .sidebar {
@@ -267,40 +272,59 @@
 
   <div class="layout-container">
 
-    <!-- TOP: DIARY COVER IMAGE (Sostituisci "tua-copertina.png" con il nome della tua immagine) -->
-    <div class="diary-cover-container">
-      <img src="tua-copertina.png" alt="Diary Cover" class="diary-cover-img">
-    </div>
-
-    <!-- Mobile menu button visible only on small screens -->
-    <div style="grid-column: 1 / -1; display: flex; justify-content: flex-end;">
+    <!-- MOBILE TOP BAR (Menu button on top right for phones) -->
+    <div class="mobile-header-bar">
       <button class="mobile-menu-toggle" onclick="toggleSidebar()">MENU ☰</button>
     </div>
 
-    <!-- LEFT AREA: SINGLE ACTIVE DIARY PAGE -->
+    <!-- TOP: DIARY TITLE / COVER IMAGE (Sostituisci "tua-copertina.png" con la tua immagine) -->
+    <div class="diary-cover-container">
+      <img src="tua-copertina.png" alt="My Diary Cover" class="diary-cover-img">
+    </div>
+
+    <!-- LEFT AREA: DIARY PAGES (First entry is the welcome introduction) -->
     <main class="diary-container">
+      
+      <!-- WELCOME / INTRO ENTRY -->
+      <article class="diary-entry">
+        <div class="entry-header">
+          <h2 class="entry-title">Welcome</h2>
+          <span class="entry-date">27 OCT 2026</span>
+        </div>
+
+        <div class="entry-content">
+          <p>Welcome to my diary log! This is where I collect my sketches, thoughts, and progress about my art and stories. Grab a cup of tea and enjoy looking around!</p>
+        </div>
+      </article>
+
+      <!-- STORY / ART UPDATE ENTRY -->
       <article class="diary-entry">
         <div class="entry-header">
           <h2 class="entry-title">Waking up in the mirror</h2>
-          <span class="entry-date">27 OCT 2026</span>
+          <span class="entry-date">26 OCT 2026</span>
         </div>
 
         <div class="entry-content">
           <p>I tried drawing my room from a top-down view today. Everything feels a bit flipped around, but I really like how the green and blue palette turned out!</p>
           
-          <!-- Sticker style image without borders -->
           <img src="1000080377.png" alt="Mirror Room Illustration" class="sticker-img">
 
           <p>Here is my character resting on the bed. Still figuring out what will happen next in the story!</p>
         </div>
       </article>
+
     </main>
 
-    <!-- RIGHT AREA: SIDEBAR ALIGNED TO THE TOP -->
+    <!-- RIGHT AREA: SIDEBAR (Ordered: Home first, then Player, then Archive/Index) -->
     <aside class="sidebar" id="sidebar">
       <button class="close-sidebar-btn" onclick="toggleSidebar()" id="closeBtn" style="display: none;">✕ CLOSE</button>
 
-      <!-- Music Player Widget -->
+      <!-- 1. HOME BUTTON (Prima opzione in alto) -->
+      <div class="widget-box" style="padding: 10px;">
+        <a href="https://cosmic-seea.neocities.org/Home" class="nav-btn btn-home-nav" style="display: block;">🏠 BACK TO HOME</a>
+      </div>
+
+      <!-- 2. MUSIC PLAYER (Seconda opzione) -->
       <div class="widget-box">
         <div class="widget-title">🎵 Music Player</div>
         <div class="music-player">
@@ -313,14 +337,12 @@
         </div>
       </div>
 
-      <!-- Navigation & Home Button -->
+      <!-- 3. NAVIGATION / ARCHIVE BY TITLE & DATE (Terza opzione) -->
       <div class="widget-box">
-        <div class="widget-title">📌 Navigation</div>
+        <div class="widget-title">📌 Index</div>
         <div class="nav-buttons">
-          <a href="#" class="nav-btn">⬅ Newer Posts</a>
-          <a href="#" class="nav-btn">Older Posts ➡</a>
-          <!-- HOME BUTTON AT THE BOTTOM OF THE MENU -->
-          <a href="https://cosmic-seea.neocities.org/Home" class="nav-btn btn-home-nav">&lt;- BACK TO HOME</a>
+          <a href="#" class="nav-btn">📖 Welcome <span style="font-size: 0.7rem; opacity: 0.7; display: block;">27 Oct</span></a>
+          <a href="#" class="nav-btn">📖 Waking up in the mirror <span style="font-size: 0.7rem; opacity: 0.7; display: block;">26 Oct</span></a>
         </div>
       </div>
     </aside>
