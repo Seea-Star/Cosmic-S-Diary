@@ -39,7 +39,7 @@
       align-items: start;
     }
 
-    /* DIARY COVER / HEADER IMAGE AREA (Centered, no borders/shadows) */
+    /* DIARY COVER / HEADER IMAGE AREA */
     .diary-cover-container {
       grid-column: 1 / -1;
       width: 100%;
@@ -50,7 +50,7 @@
 
     .diary-cover-img {
       max-width: 100%;
-      width: 450px; /* Dimensione ideale per il titolo/copertina */
+      width: 450px;
       height: auto;
       display: block;
       border: none;
@@ -58,7 +58,7 @@
       background: transparent;
     }
 
-    /* MOBILE MENU TOGGLE CONTAINER (Top right on mobile) */
+    /* MOBILE MENU TOGGLE CONTAINER */
     .mobile-header-bar {
       display: none;
       grid-column: 1 / -1;
@@ -66,7 +66,7 @@
       margin-bottom: 5px;
     }
 
-    /* LEFT SECTION: DIARY PAGES */
+    /* LEFT SECTION: DIARY PAGE (SOLO IL POST DI BENVENUTO) */
     .diary-container {
       display: flex;
       flex-direction: column;
@@ -115,7 +115,7 @@
       color: #111111;
     }
 
-    /* Sticker style image (No borders) */
+    /* Sticker style image */
     .sticker-img {
       max-width: 80%;
       height: auto;
@@ -140,230 +140,3 @@
       border-radius: 20px;
       padding: 16px;
       box-shadow: 4px 4px 0px #111111;
-    }
-
-    .widget-title {
-      font-family: 'Quicksand', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 800;
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    /* Music Player Widget */
-    .music-player {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      background: #ffffff;
-      border: 2px solid #111111;
-      border-radius: 12px;
-      padding: 10px;
-    }
-
-    .music-controls {
-      display: flex;
-      gap: 6px;
-    }
-
-    .music-btn {
-      background: #111111;
-      color: #ffffff;
-      border: none;
-      padding: 6px 10px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .nav-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .nav-btn {
-      background: #111111;
-      color: #ffffff;
-      border: 2px solid #111111;
-      padding: 8px 12px;
-      border-radius: 10px;
-      font-family: 'Quicksand', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 800;
-      text-decoration: none;
-      text-align: left;
-      box-shadow: 2px 2px 0px #111111;
-      transition: transform 0.1s ease;
-    }
-
-    .nav-btn:hover {
-      transform: translateY(-2px);
-    }
-
-    .btn-home-nav {
-      background: #ffffff;
-      color: #111111;
-      text-align: center;
-    }
-
-    /* MOBILE MENU TOGGLE */
-    .mobile-menu-toggle {
-      background: #F3EEDA;
-      color: #111111;
-      border: 2px solid #111111;
-      border-radius: 10px;
-      padding: 6px 14px;
-      font-family: 'Quicksand', sans-serif;
-      font-weight: 800;
-      font-size: 0.85rem;
-      cursor: pointer;
-      box-shadow: 2px 2px 0px #111111;
-    }
-
-    /* RESPONSIVE FOR SMARTPHONES */
-    @media (max-width: 768px) {
-      .layout-container {
-        grid-template-columns: 1fr;
-      }
-
-      .mobile-header-bar {
-        display: flex;
-      }
-
-      .sidebar {
-        display: none;
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 80%;
-        max-width: 300px;
-        height: 100%;
-        background: #F3EEDA;
-        border-left: 3px solid #111111;
-        padding: 20px;
-        box-shadow: -5px 0px 15px rgba(0,0,0,0.4);
-        z-index: 1000;
-        overflow-y: auto;
-      }
-
-      .sidebar.active {
-        display: flex;
-      }
-
-      .close-sidebar-btn {
-        align-self: flex-end;
-        background: #111111;
-        color: #ffffff;
-        border: none;
-        padding: 6px 12px;
-        border-radius: 8px;
-        font-family: 'Quicksand', sans-serif;
-        font-weight: 800;
-        cursor: pointer;
-        margin-bottom: 10px;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <div class="layout-container">
-
-    <!-- MOBILE TOP BAR (Menu button on top right for phones) -->
-    <div class="mobile-header-bar">
-      <button class="mobile-menu-toggle" onclick="toggleSidebar()">MENU ☰</button>
-    </div>
-
-    <!-- TOP: DIARY TITLE / COVER IMAGE (Sostituisci "tua-copertina.png" con la tua immagine) -->
-    <div class="diary-cover-container">
-      <img src="tua-copertina.png" alt="My Diary Cover" class="diary-cover-img">
-    </div>
-
-    <!-- LEFT AREA: DIARY PAGES (First entry is the welcome introduction) -->
-    <main class="diary-container">
-      
-      <!-- WELCOME / INTRO ENTRY -->
-      <article class="diary-entry">
-        <div class="entry-header">
-          <h2 class="entry-title">Welcome</h2>
-          <span class="entry-date">27 OCT 2026</span>
-        </div>
-
-        <div class="entry-content">
-          <p>Welcome to my diary log! This is where I collect my sketches, thoughts, and progress about my art and stories. Grab a cup of tea and enjoy looking around!</p>
-        </div>
-      </article>
-
-      <!-- STORY / ART UPDATE ENTRY -->
-      <article class="diary-entry">
-        <div class="entry-header">
-          <h2 class="entry-title">Waking up in the mirror</h2>
-          <span class="entry-date">26 OCT 2026</span>
-        </div>
-
-        <div class="entry-content">
-          <p>I tried drawing my room from a top-down view today. Everything feels a bit flipped around, but I really like how the green and blue palette turned out!</p>
-          
-          <img src="1000080377.png" alt="Mirror Room Illustration" class="sticker-img">
-
-          <p>Here is my character resting on the bed. Still figuring out what will happen next in the story!</p>
-        </div>
-      </article>
-
-    </main>
-
-    <!-- RIGHT AREA: SIDEBAR (Ordered: Home first, then Player, then Archive/Index) -->
-    <aside class="sidebar" id="sidebar">
-      <button class="close-sidebar-btn" onclick="toggleSidebar()" id="closeBtn" style="display: none;">✕ CLOSE</button>
-
-      <!-- 1. HOME BUTTON (Prima opzione in alto) -->
-      <div class="widget-box" style="padding: 10px;">
-        <a href="https://cosmic-seea.neocities.org/Home" class="nav-btn btn-home-nav" style="display: block;">🏠 BACK TO HOME</a>
-      </div>
-
-      <!-- 2. MUSIC PLAYER (Seconda opzione) -->
-      <div class="widget-box">
-        <div class="widget-title">🎵 Music Player</div>
-        <div class="music-player">
-          <span style="font-family: 'Quicksand', sans-serif; font-size: 0.75rem; font-weight: 800;">Cozy Track</span>
-          <div class="music-controls">
-            <button class="music-btn">◀</button>
-            <button class="music-btn">▶</button>
-            <button class="music-btn">❚❚</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3. NAVIGATION / ARCHIVE BY TITLE & DATE (Terza opzione) -->
-      <div class="widget-box">
-        <div class="widget-title">📌 Index</div>
-        <div class="nav-buttons">
-          <a href="#" class="nav-btn">📖 Welcome <span style="font-size: 0.7rem; opacity: 0.7; display: block;">27 Oct</span></a>
-          <a href="#" class="nav-btn">📖 Waking up in the mirror <span style="font-size: 0.7rem; opacity: 0.7; display: block;">26 Oct</span></a>
-        </div>
-      </div>
-    </aside>
-
-  </div>
-
-  <script>
-    function toggleSidebar() {
-      const sidebar = document.getElementById('sidebar');
-      const closeBtn = document.getElementById('closeBtn');
-      sidebar.classList.toggle('active');
-
-      if (window.innerWidth <= 768) {
-        if (sidebar.classList.contains('active')) {
-          closeBtn.style.display = 'block';
-        } else {
-          closeBtn.style.display = 'none';
-        }
-      }
-    }
-  </script>
-
-</body>
-</html>
