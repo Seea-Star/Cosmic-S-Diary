@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COSMIC-S - Diary / Log</title>
+  <link rel="icon" type="image/png" href="https://cosmic-seea.neocities.org/stamp-5.png">
+
+  <!-- Importazione dei Font di Google (Quicksand, Indie Flower e Nanum Pen Script) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Nanum+Pen+Script&family=Quicksand:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #111111;
+      color: #111111;
+      font-family: 'Indie Flower', 'Nanum Pen Script', cursive;
+      padding: 20px 10px;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    /* Contenitore principale diviso in due parti asimmetriche */
+    .layout-container {
+      max-width: 1000px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 2.2fr 0.8fr; /* Sinistra più larga, destra più stretta */
+      gap: 20px;
+      align-items: start;
+    }
+
+    /* BANNER SUPERIORE */
+    .top-bar {
+      grid-column: 1 / -1;
+      background: #111111;
+      border: 2px solid #111111;
+      border-radius: 20px;
+      padding: 12px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 4px 4px 0px #F3EEDA;
+      margin-bottom: 5px;
+    }
+
+    .top-bar h1 {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 2px;
+    }
+
+    .btn-home {
+      background: #F3EEDA;
+      color: #111111;
+      border: 2px solid #111111;
+      padding: 8px 14px;
+      border-radius: 12px;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 800;
+      font-size: 0.8rem;
+      text-decoration: none;
+      box-shadow: 2px 2px 0px #111111;
+      transition: transform 0.1s ease;
+    }
+
+    .btn-home:hover {
+      transform: translateY(-2px);
+    }
+
+    /* SEZIONE SINISTRA: FOGLIO A RIGHE */
+    .diary-page {
+      background-color: #F3EEDA;
+      /* Generazione delle righe orizzontali del quaderno */
+      background-image: linear-gradient(rgba(180, 170, 150, 0.4) 1px, transparent 1px);
+      background-size: 100% 32px; /* Distanza tra le righe */
+      border: 2px solid #111111;
+      border-radius: 20px;
+      padding: 30px 25px;
+      box-shadow: 6px 6px 0px #111111;
+      min-height: 500px;
+      line-height: 32px; /* Allinea il testo esatto con le righe */
+    }
+
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      line-height: 1;
+    }
+
+    .entry-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #111111;
+    }
+
+    .entry-date {
+      background: #111111;
+      color: #ffffff;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 12px;
+      border: 2px solid #111111;
+      box-shadow: 2px 2px 0px #F3EEDA;
+    }
+
+    .entry-content {
+      font-size: 1.3rem;
+      color: #111111;
+    }
+
+    .entry-content img {
+      max-width: 100%;
+      height: auto;
+      border: 2px solid #111111;
+      border-radius: 15px;
+      margin: 15px 0;
+      box-shadow: 4px 4px 0px #111111;
+    }
+
+    /* SEZIONE DESTRA: SIDEBAR DESKTOP */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .widget-box {
+      background: #ffffff;
+      border: 2px solid #111111;
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: 4px 4px 0px #111111;
+    }
+
+    .widget-title {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    /* Player Musicale Semplificato */
+    .music-player {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      background: #F3EEDA;
+      border: 2px solid #111111;
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    .music-controls {
+      display: flex;
+      gap: 8px;
+    }
+
+    .music-btn {
+      background: #111111;
+      color: #ffffff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .nav-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .nav-btn {
+      background: #111111;
+      color: #ffffff;
+      border: 2px solid #111111;
+      padding: 8px 12px;
+      border-radius: 10px;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      text-align: center;
+      box-shadow: 2px 2px 0px #F3EEDA;
+      transition: transform 0.1s ease;
+    }
+
+    .nav-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    /* PULSANTE MENU PER MOBILE (NASCOSTO DI DEFAULT) */
+    .mobile-menu-toggle {
+      display: none;
+      background: #F3EEDA;
+      border: 2px solid #111111;
+      border-radius: 10px;
+      padding: 6px 12px;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    /* RESPONSIVE PER SMARTPHONE */
+    @media (max-width: 768px) {
+      .layout-container {
+        grid-template-columns: 1fr; /* Una colonna singola */
+      }
+
+      .mobile-menu-toggle {
+        display: block;
+      }
+
+      /* La sidebar diventa un pannello sovrapposto per mobile */
+      .sidebar {
+        display: none; /* Nascosto di default */
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 80%;
+        max-width: 300px;
+        height: 100%;
+        background: #F3EEDA;
+        border-left: 3px solid #111111;
+        padding: 20px;
+        box-shadow: -5px 0px 15px rgba(0,0,0,0.3);
+        z-index: 1000;
+        overflow-y: auto;
+      }
+
+      .sidebar.active {
+        display: flex;
+      }
+
+      .close-sidebar-btn {
+        align-self: flex-end;
+        background: #111111;
+        color: #ffffff;
+        border: none;
+        padding: 6px 10px;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="layout-container">
+
+    <!-- Header top banner -->
+    <header class="top-bar">
+      <h1>MY DIARY</h1>
+      <button class="mobile-menu-toggle" onclick="toggleSidebar()">MENU ☰</button>
+      <a href="https://cosmic-seea.neocities.org/Home" class="btn-home">&lt;- HOME</a>
+    </header>
+
+    <!-- Pagina del diario (Sinistra) -->
+    <main class="diary-page">
+      <div class="entry-header">
+        <h2 class="entry-title">Titolo del giorno</h2>
+        <span class="entry-date">27 Ottobre 2026</span>
+      </div>
+
+      <div class="entry-content">
+        <p>Oggi ho iniziato a impostare la mia pagina del diario sul mio sito. Mi piace un sacco come ci stanno le righe sotto al testo!</p>
+        
+        <!-- Esempio di inserimento immagine -->
+        <img src="1000080377.png" alt="La mia stanza specchiata">
+
+        <p>Sto provando varie prospettive e dettagli per le illustrazioni. Sarà un bel modo per condividere i miei disegni e i miei piccoli aggiornamenti.</p>
+      </div>
+    </main>
+
+    <!-- Sidebar con Menu e Player Musicale (Destra su desktop / Menu laterale su mobile) -->
+    <aside class="sidebar" id="sidebar">
+      <button class="close-sidebar-btn" onclick="toggleSidebar()" style="display: none;" id="closeBtn">✕ Chiudi</button>
+
+      <!-- Player Musicale -->
+      <div class="widget-box">
+        <div class="widget-title">🎵 Player</div>
+        <div class="music-player">
+          <span style="font-family: 'Quicksand'; font-size: 0.8rem; font-weight: 700;">Lo-Fi Track</span>
+          <div class="music-controls">
+            <button class="music-btn">◀</button>
+            <button class="music-btn">▶</button>
+            <button class="music-btn">▶▌</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigazione tra le date / Home -->
+      <div class="widget-box">
+        <div class="widget-title">📌 Indice</div>
+        <div class="nav-buttons">
+          <a href="https://cosmic-seea.neocities.org/Home" class="nav-btn">🏠 Torna alla Home</a>
+          <a href="#" class="nav-btn">⬅ Pagina Precedente</a>
+          <a href="#" class="nav-btn">Pagina Successiva ➡</a>
+        </div>
+      </div>
+    </aside>
+
+  </div>
+
+  <script>
+    // Script per la gestione del menu mobile
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const closeBtn = document.getElementById('closeBtn');
+      sidebar.classList.toggle('active');
+
+      if (window.innerWidth <= 768) {
+        if (sidebar.classList.contains('active')) {
+          closeBtn.style.display = 'block';
+        } else {
+          closeBtn.style.display = 'none';
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
