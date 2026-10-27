@@ -6,7 +6,7 @@
   <title>COSMIC-S - My Diary</title>
   <link rel="icon" type="image/png" href="https://cosmic-seea.neocities.org/stamp-5.png">
 
-  <!-- Google Fonts: Quicksand, Indie Flower & Nanum Pen Script -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Nanum+Pen+Script&family=Quicksand:wght@600;700;800&display=swap" rel="stylesheet">
@@ -22,64 +22,58 @@
       background-color: #111111;
       color: #111111;
       font-family: 'Indie Flower', 'Nanum Pen Script', cursive;
-      padding: 20px 10px;
+      padding: 15px 10px;
       display: flex;
       justify-content: center;
+      align-items: flex-start; /* Parte tutto dall'alto */
       min-height: 100vh;
     }
 
-    /* Main layout container (desktop: 2 asymmetric columns) */
+    /* Main layout container */
     .layout-container {
-      max-width: 1000px;
+      max-width: 950px;
       width: 100%;
       display: grid;
       grid-template-columns: 2.2fr 0.8fr;
       gap: 20px;
-      align-items: start;
+      align-items: start; /* Allineato rigorosamente in alto */
     }
 
-    /* TOP BANNER */
-    .top-bar {
+    /* DIARY COVER / HEADER IMAGE AREA */
+    .diary-cover-container {
       grid-column: 1 / -1;
-      background: #111111;
-      border: 2px solid #111111;
-      border-radius: 20px;
-      padding: 14px 25px;
+      width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 4px 4px 0px #F3EEDA;
       margin-bottom: 5px;
     }
 
-    /* Stylized Header Title */
-    .diary-header-title {
-      font-family: 'Quicksand', sans-serif;
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: #ffffff;
-      letter-spacing: 3px;
-      text-transform: uppercase;
+    .diary-cover-img {
+      width: 100%;
+      max-height: 220px;
+      object-fit: cover;
+      border: 2px solid #111111;
+      border-radius: 20px;
+      box-shadow: 4px 4px 0px #F3EEDA;
+      display: block;
     }
 
-    /* LEFT SECTION: DIARY CONTAINER & ENTRIES */
+    /* LEFT SECTION: SINGLE DIARY PAGE */
     .diary-container {
       display: flex;
       flex-direction: column;
-      gap: 35px; /* Gap between diary entries */
+      gap: 20px;
     }
 
-    /* Individual Diary Entry (Lined Paper Style) */
     .diary-entry {
       background-color: #F3EEDA;
-      /* Lined notebook effect */
       background-image: linear-gradient(rgba(180, 170, 150, 0.4) 1px, transparent 1px);
       background-size: 100% 32px;
       border: 2px solid #111111;
       border-radius: 20px;
       padding: 30px 25px;
       box-shadow: 6px 6px 0px #111111;
-      min-height: 350px;
       line-height: 32px;
     }
 
@@ -97,7 +91,6 @@
       color: #111111;
     }
 
-    /* Black pill box for the date */
     .entry-date {
       background: #111111;
       color: #ffffff;
@@ -115,7 +108,7 @@
       color: #111111;
     }
 
-    /* STICKER IMAGE STYLE (No borders, no box shadows) */
+    /* Sticker style image (No borders) */
     .sticker-img {
       max-width: 80%;
       height: auto;
@@ -124,10 +117,10 @@
       border: none;
       box-shadow: none;
       background: transparent;
-      filter: drop-shadow(2px 3px 0px rgba(0,0,0,0.15)); /* Soft sticker shadow effect */
+      filter: drop-shadow(2px 3px 0px rgba(0,0,0,0.15));
     }
 
-    /* RIGHT SECTION: SIDEBAR & MENU */
+    /* RIGHT SECTION: SIDEBAR (NO WHITE RECTANGLES, ALIGNED TOP) */
     .sidebar {
       display: flex;
       flex-direction: column;
@@ -135,18 +128,18 @@
     }
 
     .widget-box {
-      background: #ffffff;
+      background: #F3EEDA; /* Sfondo coerente panna anziché bianco */
       border: 2px solid #111111;
       border-radius: 20px;
-      padding: 18px;
+      padding: 16px;
       box-shadow: 4px 4px 0px #111111;
     }
 
     .widget-title {
       font-family: 'Quicksand', sans-serif;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       font-weight: 800;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       text-transform: uppercase;
       letter-spacing: 1px;
     }
@@ -156,23 +149,23 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
-      background: #F3EEDA;
+      gap: 8px;
+      background: #ffffff;
       border: 2px solid #111111;
       border-radius: 12px;
-      padding: 12px;
+      padding: 10px;
     }
 
     .music-controls {
       display: flex;
-      gap: 8px;
+      gap: 6px;
     }
 
     .music-btn {
       background: #111111;
       color: #ffffff;
       border: none;
-      padding: 6px 12px;
+      padding: 6px 10px;
       border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
@@ -181,21 +174,21 @@
     .nav-buttons {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
 
     .nav-btn {
       background: #111111;
       color: #ffffff;
       border: 2px solid #111111;
-      padding: 10px 14px;
-      border-radius: 12px;
+      padding: 8px 12px;
+      border-radius: 10px;
       font-family: 'Quicksand', sans-serif;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 800;
       text-decoration: none;
       text-align: center;
-      box-shadow: 2px 2px 0px #F3EEDA;
+      box-shadow: 2px 2px 0px #111111;
       transition: transform 0.1s ease;
     }
 
@@ -204,26 +197,26 @@
     }
 
     .btn-home-nav {
-      background: #F3EEDA;
+      background: #ffffff;
       color: #111111;
     }
 
-    /* MOBILE MENU TOGGLE BUTTON (TOP RIGHT) */
+    /* MOBILE MENU TOGGLE */
     .mobile-menu-toggle {
       display: none;
       background: #F3EEDA;
       color: #111111;
       border: 2px solid #111111;
       border-radius: 10px;
-      padding: 6px 14px;
+      padding: 6px 12px;
       font-family: 'Quicksand', sans-serif;
       font-weight: 800;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       cursor: pointer;
       box-shadow: 2px 2px 0px #111111;
     }
 
-    /* RESPONSIVE DESIGN FOR SMARTPHONES */
+    /* RESPONSIVE FOR SMARTPHONES */
     @media (max-width: 768px) {
       .layout-container {
         grid-template-columns: 1fr;
@@ -231,9 +224,10 @@
 
       .mobile-menu-toggle {
         display: block;
+        margin-bottom: 10px;
+        justify-self: flex-end;
       }
 
-      /* Slide-out mobile menu */
       .sidebar {
         display: none;
         position: fixed;
@@ -273,16 +267,18 @@
 
   <div class="layout-container">
 
-    <!-- Top Header Banner -->
-    <header class="top-bar">
-      <div class="diary-header-title">✦ SEEA'S DIARY LOG ✦</div>
+    <!-- TOP: DIARY COVER IMAGE (Sostituisci "tua-copertina.png" con il nome della tua immagine) -->
+    <div class="diary-cover-container">
+      <img src="tua-copertina.png" alt="Diary Cover" class="diary-cover-img">
+    </div>
+
+    <!-- Mobile menu button visible only on small screens -->
+    <div style="grid-column: 1 / -1; display: flex; justify-content: flex-end;">
       <button class="mobile-menu-toggle" onclick="toggleSidebar()">MENU ☰</button>
-    </header>
+    </div>
 
-    <!-- LEFT AREA: DIARY ENTRIES CONTAINER -->
+    <!-- LEFT AREA: SINGLE ACTIVE DIARY PAGE -->
     <main class="diary-container">
-
-      <!-- ENTRY 1: LATEST POST -->
       <article class="diary-entry">
         <div class="entry-header">
           <h2 class="entry-title">Waking up in the mirror</h2>
@@ -292,41 +288,23 @@
         <div class="entry-content">
           <p>I tried drawing my room from a top-down view today. Everything feels a bit flipped around, but I really like how the green and blue palette turned out!</p>
           
-          <!-- Sticker style image (No borders) -->
+          <!-- Sticker style image without borders -->
           <img src="1000080377.png" alt="Mirror Room Illustration" class="sticker-img">
 
           <p>Here is my character resting on the bed. Still figuring out what will happen next in the story!</p>
         </div>
       </article>
-
-      <!-- ENTRY 2: PREVIOUS POST (EASY TO DUPLICATE FOR NEW PAGES) -->
-      <article class="diary-entry">
-        <div class="entry-header">
-          <h2 class="entry-title">Character Sketches</h2>
-          <span class="entry-date">20 OCT 2026</span>
-        </div>
-
-        <div class="entry-content">
-          <p>Worked on a friendly avatar version for the story section!</p>
-          
-          <!-- Another Sticker Image -->
-          <img src="1000080392.png" alt="Character Peace Sign" class="sticker-img">
-
-          <p>Doubled peace signs and green hoodie. Very chill vibe!</p>
-        </div>
-      </article>
-
     </main>
 
-    <!-- RIGHT AREA: SIDEBAR / NAVIGATION MENU -->
+    <!-- RIGHT AREA: SIDEBAR ALIGNED TO THE TOP -->
     <aside class="sidebar" id="sidebar">
       <button class="close-sidebar-btn" onclick="toggleSidebar()" id="closeBtn" style="display: none;">✕ CLOSE</button>
 
-      <!-- Music Player Box -->
+      <!-- Music Player Widget -->
       <div class="widget-box">
         <div class="widget-title">🎵 Music Player</div>
         <div class="music-player">
-          <span style="font-family: 'Quicksand', sans-serif; font-size: 0.8rem; font-weight: 800;">Cozy Track</span>
+          <span style="font-family: 'Quicksand', sans-serif; font-size: 0.75rem; font-weight: 800;">Cozy Track</span>
           <div class="music-controls">
             <button class="music-btn">◀</button>
             <button class="music-btn">▶</button>
@@ -341,7 +319,7 @@
         <div class="nav-buttons">
           <a href="#" class="nav-btn">⬅ Newer Posts</a>
           <a href="#" class="nav-btn">Older Posts ➡</a>
-          <!-- HOME BUTTON MOVED HERE -->
+          <!-- HOME BUTTON AT THE BOTTOM OF THE MENU -->
           <a href="https://cosmic-seea.neocities.org/Home" class="nav-btn btn-home-nav">&lt;- BACK TO HOME</a>
         </div>
       </div>
@@ -350,7 +328,6 @@
   </div>
 
   <script>
-    // Toggle mobile menu sidebar
     function toggleSidebar() {
       const sidebar = document.getElementById('sidebar');
       const closeBtn = document.getElementById('closeBtn');
