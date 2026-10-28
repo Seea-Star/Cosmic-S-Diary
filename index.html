@@ -38,6 +38,7 @@
       align-items: start;
     }
 
+    /* Copertina in alto centrata */
     .diary-cover-container {
       grid-column: 1 / -1;
       width: 100%;
@@ -134,6 +135,7 @@
       letter-spacing: 1px;
     }
 
+    /* PLAYER MUSICALE STILE HOWL INTEGRATO NELLA SIDEBAR */
     .cosmic-player {
       background: url('https://raw.githubusercontent.com/Seea-Star/Howl/refs/heads/main/c14b6fdbee2490ed3ff5a726d32d749f.gif') center/cover no-repeat;
       border: 2px solid #111111;
@@ -200,34 +202,24 @@
       gap: 8px;
     }
 
-    .nav-link-item {
+    .nav-btn {
+      background: #111111;
+      color: #ffffff;
+      border: 2px solid #111111;
+      padding: 8px 12px;
+      border-radius: 10px;
       font-family: 'Quicksand', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: #111111;
-      text-decoration: none;
-      display: block;
-      padding: 4px 0;
-      transition: opacity 0.2s ease;
-    }
-
-    .nav-link-item:hover {
-      opacity: 0.6;
-    }
-
-    .back-home-link {
-      font-family: 'Quicksand', sans-serif;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 800;
-      color: #111111;
       text-decoration: none;
-      display: inline-block;
-      margin-bottom: 2px;
-      transition: transform 0.2s ease;
+      text-align: left;
+      box-shadow: 2px 2px 0px #111111;
     }
 
-    .back-home-link:hover {
-      transform: translateX(-3px);
+    .btn-home-nav {
+      background: #ffffff;
+      color: #111111;
+      text-align: center;
     }
 
     .mobile-menu-toggle {
@@ -288,12 +280,12 @@
   <div class="layout-container">
 
     <div class="mobile-header-bar">
-      <button class="mobile-menu-toggle" onclick="toggleSidebar()">MENU</button>
+      <button class="mobile-menu-toggle" onclick="toggleSidebar()">MENU ☰</button>
     </div>
 
-    <!-- Sostituisci il link qui sotto con il link raw del tuo logo Diary di GitHub -->
+    <!-- Sostituisci "tua-copertina.png" con il link raw del tuo logo Diary di GitHub -->
     <div class="diary-cover-container">
-      <img src="https://raw.githubusercontent.com/Seea-Star/Img/refs/heads/main/diary-logo.png" alt="Diary" class="diary-cover-img">
+      <img src="tua-copertina.png" alt="My Diary Cover" class="diary-cover-img">
     </div>
 
     <main class="diary-container">
@@ -309,14 +301,15 @@
     </main>
 
     <aside class="sidebar" id="sidebar">
-      <button class="close-sidebar-btn" onclick="toggleSidebar()" id="closeBtn" style="display: none;">CLOSE</button>
+      <button class="close-sidebar-btn" onclick="toggleSidebar()" id="closeBtn" style="display: none;">✕ CLOSE</button>
 
-      <div>
-        <a href="https://cosmic-seea.neocities.org/Home" class="back-home-link">&lt;- Home</a>
+      <div class="widget-box" style="padding: 10px;">
+        <a href="https://cosmic-seea.neocities.org/Home" class="nav-btn btn-home-nav" style="display: block;">🏠 BACK TO HOME</a>
       </div>
 
+      <!-- WIDGET PLAYER MUSICALE AGGIORNATO -->
       <div class="widget-box">
-        <div class="widget-title">Music Player</div>
+        <div class="widget-title">🎵 Music Player</div>
         <div class="cosmic-player">
           <div class="cosmic-player-inner">
             <div class="player-screen">Cozy Track</div>
@@ -331,10 +324,10 @@
       </div>
 
       <div class="widget-box">
-        <div class="widget-title">Index</div>
+        <div class="widget-title">📌 Index</div>
         <div class="nav-buttons">
-          <a href="#" class="nav-link-item">Waking up in the mirror <span style="font-size: 0.7rem; opacity: 0.7; display: block;">26 Oct</span></a>
-          <a href="#" class="nav-link-item">Welcome <span style="font-size: 0.7rem; opacity: 0.7; display: block;">27 Oct</span></a>
+          <a href="#" class="nav-btn">📖 Waking up in the mirror <span style="font-size: 0.7rem; opacity: 0.7; display: block;">26 Oct</span></a>
+          <a href="#" class="nav-btn">📖 Welcome <span style="font-size: 0.7rem; opacity: 0.7; display: block;">27 Oct</span></a>
         </div>
       </div>
     </aside>
