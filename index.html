@@ -1,349 +1,315 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>COSMIC-S - My Diary</title>
-  <link rel="icon" type="image/png" href="https://cosmic-seea.neocities.org/stamp-5.png">
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Nanum+Pen+Script&family=Quicksand:wght@600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      background-color: #111111;
-      color: #111111;
-      font-family: 'Indie Flower', 'Nanum Pen Script', cursive;
-      padding: 20px 10px;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      min-height: 100vh;
-    }
-
-    .layout-container {
-      max-width: 950px;
-      width: 100%;
-      display: grid;
-      grid-template-columns: 2.2fr 0.8fr;
-      gap: 20px;
-      align-items: start;
-    }
-
-    /* Copertina in alto centrata */
-    .diary-cover-container {
-      grid-column: 1 / -1;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      margin-bottom: 10px;
-    }
-
-    .diary-cover-img {
-      max-width: 100%;
-      width: 450px;
-      height: auto;
-      display: block;
-      border: none;
-      box-shadow: none;
-      background: transparent;
-    }
-
-    .mobile-header-bar {
-      display: none;
-      grid-column: 1 / -1;
-      justify-content: flex-end;
-      margin-bottom: 5px;
-    }
-
-    .diary-container {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .diary-entry {
-      background-color: #F3EEDA;
-      background-image: linear-gradient(rgba(180, 170, 150, 0.4) 1px, transparent 1px);
-      background-size: 100% 32px;
-      border: 2px solid #111111;
-      border-radius: 20px;
-      padding: 30px 25px;
-      box-shadow: 6px 6px 0px #111111;
-      line-height: 32px;
-    }
-
-    .entry-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 15px;
-      line-height: 1;
-    }
-
-    .entry-title {
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: #111111;
-    }
-
-    .entry-date {
-      background: #111111;
-      color: #ffffff;
-      font-family: 'Quicksand', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 800;
-      padding: 6px 14px;
-      border-radius: 12px;
-      border: 2px solid #111111;
-      box-shadow: 2px 2px 0px #F3EEDA;
-    }
-
-    .entry-content {
-      font-size: 1.35rem;
-      color: #111111;
-    }
-
-    .sidebar {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .widget-box {
-      background: #F3EEDA;
-      border: 2px solid #111111;
-      border-radius: 20px;
-      padding: 16px;
-      box-shadow: 4px 4px 0px #111111;
-    }
-
-    .widget-title {
-      font-family: 'Quicksand', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 800;
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    /* PLAYER MUSICALE STILE HOWL INTEGRATO NELLA SIDEBAR */
-    .cosmic-player {
-      background: url('https://raw.githubusercontent.com/Seea-Star/Howl/refs/heads/main/c14b6fdbee2490ed3ff5a726d32d749f.gif') center/cover no-repeat;
-      border: 2px solid #111111;
-      border-radius: 12px;
-      overflow: hidden;
-      width: 100%;
-      position: relative;
-    }
-
-    .cosmic-player-inner {
-      background: rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(2px);
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .player-screen {
-      font-family: 'Quicksand', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 800;
-      color: #ffffff;
-      text-align: center;
-      border-bottom: 1px dashed rgba(255,255,255,0.4);
-      padding-bottom: 4px;
-      width: 100%;
-      text-shadow: 1px 1px 3px #000;
-    }
-
-    .player-controls {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .player-btn {
-      background: #ffffff;
-      color: #111111;
-      border: 2px solid #111;
-      border-radius: 50%;
-      width: 32px;
-      height: 32px;
-      font-weight: 800;
-      font-size: 0.85rem;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 2px 2px 0px #111;
-      transition: transform 0.15s ease, background 0.2s ease;
-    }
-
-    .player-btn:hover {
-      transform: scale(1.1);
-      background: #fcf8ee;
-    }
-
-    .nav-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .nav-btn {
-      background: #111111;
-      color: #ffffff;
-      border: 2px solid #111111;
-      padding: 8px 12px;
-      border-radius: 10px;
-      font-family: 'Quicksand', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 800;
-      text-decoration: none;
-      text-align: left;
-      box-shadow: 2px 2px 0px #111111;
-    }
-
-    .btn-home-nav {
-      background: #ffffff;
-      color: #111111;
-      text-align: center;
-    }
-
-    .mobile-menu-toggle {
-      background: #F3EEDA;
-      color: #111111;
-      border: 2px solid #111111;
-      border-radius: 10px;
-      padding: 6px 14px;
-      font-family: 'Quicksand', sans-serif;
-      font-weight: 800;
-      font-size: 0.85rem;
-      cursor: pointer;
-      box-shadow: 2px 2px 0px #111111;
-    }
-
-    @media (max-width: 768px) {
-      .layout-container {
-        grid-template-columns: 1fr;
-      }
-      .mobile-header-bar {
-        display: flex;
-      }
-      .sidebar {
-        display: none;
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 80%;
-        max-width: 300px;
-        height: 100%;
-        background: #F3EEDA;
-        border-left: 3px solid #111111;
-        padding: 20px;
-        box-shadow: -5px 0px 15px rgba(0,0,0,0.4);
-        z-index: 1000;
-        overflow-y: auto;
-      }
-      .sidebar.active {
-        display: flex;
-      }
-      .close-sidebar-btn {
-        align-self: flex-end;
-        background: #111111;
-        color: #ffffff;
-        border: none;
-        padding: 6px 12px;
-        border-radius: 8px;
-        font-family: 'Quicksand', sans-serif;
-        font-weight: 800;
-        cursor: pointer;
-        margin-bottom: 10px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>COSMIC-S - My Diary</title>
+<link rel="icon" type="image/png" href="[https://cosmic-seea.neocities.org/stamp-5.png](https://cosmic-seea.neocities.org/stamp-5.png)">
+​<!-- Google Fonts -->
+<link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)">
+<link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin>
+<link href="[https://fonts.googleapis.com/css2?family=Indie+Flower&family=Nanum+Pen+Script&family=Quicksand:wght@600;700;800&display=swap](https://fonts.googleapis.com/css2?family=Indie+Flower&family=Nanum+Pen+Script&family=Quicksand:wght@600;700;800&display=swap)" rel="stylesheet">
+​<style>
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+​body {
+background-color: #111111;
+color: #111111;
+font-family: 'Indie Flower', 'Nanum Pen Script', cursive;
+padding: 20px 10px;
+display: flex;
+justify-content: center;
+align-items: flex-start;
+min-height: 100vh;
+}
+​.layout-container {
+max-width: 950px;
+width: 100%;
+display: grid;
+grid-template-columns: 2.2fr 0.8fr;
+gap: 20px;
+align-items: start;
+}
+​.diary-cover-container {
+grid-column: 1 / -1;
+width: 100%;
+display: flex;
+justify-content: center;
+margin-bottom: 10px;
+}
+​.diary-cover-img {
+max-width: 100%;
+width: 450px;
+height: auto;
+display: block;
+border: none;
+box-shadow: none;
+background: transparent;
+}
+​.mobile-header-bar {
+display: none;
+grid-column: 1 / -1;
+justify-content: flex-end;
+margin-bottom: 5px;
+}
+​.diary-container {
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+​.diary-entry {
+background-color: #F3EEDA;
+background-image: linear-gradient(rgba(180, 170, 150, 0.4) 1px, transparent 1px);
+background-size: 100% 32px;
+border: 2px solid #111111;
+border-radius: 20px;
+padding: 30px 25px;
+box-shadow: 6px 6px 0px #111111;
+line-height: 32px;
+}
+​.entry-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 15px;
+line-height: 1;
+}
+​.entry-title {
+font-size: 2.2rem;
+font-weight: 800;
+color: #111111;
+}
+​.entry-date {
+background: #111111;
+color: #ffffff;
+font-family: 'Quicksand', sans-serif;
+font-size: 0.8rem;
+font-weight: 800;
+padding: 6px 14px;
+border-radius: 12px;
+border: 2px solid #111111;
+box-shadow: 2px 2px 0px #F3EEDA;
+}
+​.entry-content {
+font-size: 1.35rem;
+color: #111111;
+}
+​.sidebar {
+display: flex;
+flex-direction: column;
+gap: 16px;
+}
+​.widget-box {
+background: #F3EEDA;
+border: 2px solid #111111;
+border-radius: 20px;
+padding: 16px;
+box-shadow: 4px 4px 0px #111111;
+}
+​.widget-title {
+font-family: 'Quicksand', sans-serif;
+font-size: 0.9rem;
+font-weight: 800;
+margin-bottom: 10px;
+text-transform: uppercase;
+letter-spacing: 1px;
+}
+​.cosmic-player {
+background: url('https://raw.githubusercontent.com/Seea-Star/Howl/refs/heads/main/c14b6fdbee2490ed3ff5a726d32d749f.gif') center/cover no-repeat;
+border: 2px solid #111111;
+border-radius: 12px;
+overflow: hidden;
+width: 100%;
+position: relative;
+}
+​.cosmic-player-inner {
+background: rgba(0, 0, 0, 0.45);
+backdrop-filter: blur(2px);
+padding: 12px;
+display: flex;
+flex-direction: column;
+gap: 8px;
+align-items: center;
+justify-content: center;
+}
+​.player-screen {
+font-family: 'Quicksand', sans-serif;
+font-size: 0.75rem;
+font-weight: 800;
+color: #ffffff;
+text-align: center;
+border-bottom: 1px dashed rgba(255,255,255,0.4);
+padding-bottom: 4px;
+width: 100%;
+text-shadow: 1px 1px 3px #000;
+}
+​.player-controls {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+​.player-btn {
+background: #ffffff;
+color: #111111;
+border: 2px solid #111;
+border-radius: 50%;
+width: 32px;
+height: 32px;
+font-weight: 800;
+font-size: 0.85rem;
+cursor: pointer;
+display: flex;
+justify-content: center;
+align-items: center;
+box-shadow: 2px 2px 0px #111;
+transition: transform 0.15s ease, background 0.2s ease;
+}
+​.player-btn:hover {
+transform: scale(1.1);
+background: #fcf8ee;
+}
+​.nav-buttons {
+display: flex;
+flex-direction: column;
+gap: 8px;
+}
+​.nav-link-item {
+font-family: 'Quicksand', sans-serif;
+font-size: 0.85rem;
+font-weight: 700;
+color: #111111;
+text-decoration: none;
+display: block;
+padding: 4px 0;
+transition: opacity 0.2s ease;
+}
+​.nav-link-item:hover {
+opacity: 0.6;
+}
+​.back-home-link {
+font-family: 'Quicksand', sans-serif;
+font-size: 0.85rem;
+font-weight: 800;
+color: #111111;
+text-decoration: none;
+display: inline-block;
+margin-bottom: 5px;
+transition: transform 0.2s ease;
+}
+​.back-home-link:hover {
+transform: translateX(-3px);
+}
+​.mobile-menu-toggle {
+background: #F3EEDA;
+color: #111111;
+border: 2px solid #111111;
+border-radius: 10px;
+padding: 6px 14px;
+font-family: 'Quicksand', sans-serif;
+font-weight: 800;
+font-size: 0.85rem;
+cursor: pointer;
+box-shadow: 2px 2px 0px #111111;
+}
+​@media (max-width: 768px) {
+.layout-container {
+grid-template-columns: 1fr;
+}
+.mobile-header-bar {
+display: flex;
+}
+.sidebar {
+display: none;
+position: fixed;
+top: 0;
+right: 0;
+width: 80%;
+max-width: 300px;
+height: 100%;
+background: #F3EEDA;
+border-left: 3px solid #111111;
+padding: 20px;
+box-shadow: -5px 0px 15px rgba(0,0,0,0.4);
+z-index: 1000;
+overflow-y: auto;
+}
+.sidebar.active {
+display: flex;
+}
+.close-sidebar-btn {
+align-self: flex-end;
+background: #111111;
+color: #ffffff;
+border: none;
+padding: 6px 12px;
+border-radius: 8px;
+font-family: 'Quicksand', sans-serif;
+font-weight: 800;
+cursor: pointer;
+margin-bottom: 10px;
+}
+}
+</style>
 </head>
 <body>
-
-  <div class="layout-container">
-
-    <div class="mobile-header-bar">
-      <button class="mobile-menu-toggle" onclick="toggleSidebar()">MENU ☰</button>
-    </div>
-
-    <!-- Sostituisci "tua-copertina.png" con il link raw del tuo logo Diary di GitHub -->
-    <div class="diary-cover-container">
-      <img src="tua-copertina.png" alt="My Diary Cover" class="diary-cover-img">
-    </div>
-
-    <main class="diary-container">
-      <article class="diary-entry">
-        <div class="entry-header">
-          <h2 class="entry-title">Welcome</h2>
-          <span class="entry-date">27 OCT 2026</span>
-        </div>
-        <div class="entry-content">
-          <p>Welcome to my diary log! This is where I collect my sketches, thoughts, and progress about my art and stories. Grab a cup of tea and enjoy looking around!</p>
-        </div>
-      </article>
-    </main>
-
-    <aside class="sidebar" id="sidebar">
-      <button class="close-sidebar-btn" onclick="toggleSidebar()" id="closeBtn" style="display: none;">✕ CLOSE</button>
-
-      <div class="widget-box" style="padding: 10px;">
-        <a href="https://cosmic-seea.neocities.org/Home" class="nav-btn btn-home-nav" style="display: block;">🏠 BACK TO HOME</a>
-      </div>
-
-      <!-- WIDGET PLAYER MUSICALE AGGIORNATO -->
-      <div class="widget-box">
-        <div class="widget-title">🎵 Music Player</div>
-        <div class="cosmic-player">
-          <div class="cosmic-player-inner">
-            <div class="player-screen">Cozy Track</div>
-            <div class="player-controls">
-              <button class="player-btn" title="Play/Pause" onclick="let a=document.getElementById('bg-audio'); a.paused ? a.play() : a.pause();">♫</button>
-            </div>
-          </div>
-          <audio id="bg-audio" loop>
-            <source src="https://raw.githubusercontent.com/Seea-Star/Howl/refs/heads/main/Joe%20Hisaishi%20-%20Merry-Go-Round%20of%20Life%20(from%20Howl%E2%80%99s%20Moving%20Castle).mp3" type="audio/mpeg">
-          </audio>
-        </div>
-      </div>
-
-      <div class="widget-box">
-        <div class="widget-title">📌 Index</div>
-        <div class="nav-buttons">
-          <a href="#" class="nav-btn">📖 Waking up in the mirror <span style="font-size: 0.7rem; opacity: 0.7; display: block;">26 Oct</span></a>
-          <a href="#" class="nav-btn">📖 Welcome <span style="font-size: 0.7rem; opacity: 0.7; display: block;">27 Oct</span></a>
-        </div>
-      </div>
-    </aside>
-
-  </div>
-
-  <script>
-    function toggleSidebar() {
-      const sidebar = document.getElementById('sidebar');
-      const closeBtn = document.getElementById('closeBtn');
-      sidebar.classList.toggle('active');
-      if (window.innerWidth <= 768) {
-        closeBtn.style.display = sidebar.classList.contains('active') ? 'block' : 'none';
-      }
-    }
-  </script>
-
-</body>
+​<div class="layout-container">
+​<div class="mobile-header-bar">
+<button class="mobile-menu-toggle" onclick="toggleSidebar()">MENU ☰</button>
+</div>
+​<div class="diary-cover-container">
+<img src="[https://raw.githubusercontent.com/Seea-Star/Img/refs/heads/main/diary-logo.png](https://raw.githubusercontent.com/Seea-Star/Img/refs/heads/main/diary-logo.png)" alt="Diary" class="diary-cover-img">
+</div>
+​<main class="diary-container">
+<article class="diary-entry">
+<div class="entry-header">
+<h2 class="entry-title">Welcome</h2>
+<span class="entry-date">27 OCT 2026</span>
+</div>
+<div class="entry-content">
+<p>Welcome to my diary log! This is where I collect my sketches, thoughts, and progress about my art and stories. Grab a cup of tea and enjoy looking around!</p>
+</div>
+</article>
+</main>
+​<aside class="sidebar" id="sidebar">
+<button class="close-sidebar-btn" onclick="toggleSidebar()" id="closeBtn" style="display: none;">X CLOSE</button>
+​<div>
+<a href="[https://cosmic-seea.neocities.org/Home](https://cosmic-seea.neocities.org/Home)" class="back-home-link"><- Home</a>
+</div>
+​<div class="widget-box">
+<div class="widget-title">Music Player</div>
+<div class="cosmic-player">
+<div class="cosmic-player-inner">
+<div class="player-screen">Cozy Track</div>
+<div class="player-controls">
+<button class="player-btn" title="Play/Pause" onclick="let a=document.getElementById('bg-audio'); a.paused ? a.play() : a.pause();">♫</button>
+</div>
+</div>
+<audio id="bg-audio" loop>
+<source src="[https://raw.githubusercontent.com/Seea-Star/Howl/refs/heads/main/Joe%20Hisaishi%20-%20Merry-Go-Round%20of%20Life%20(from%20Howl%E2%80%99s%20Moving%20Castle).mp3](https://raw.githubusercontent.com/Seea-Star/Howl/refs/heads/main/Joe%20Hisaishi%20-%20Merry-Go-Round%20of%20Life%20(from%20Howl%E2%80%99s%20Moving%20Castle).mp3)" type="audio/mpeg">
+</audio>
+</div>
+</div>
+​<div class="widget-box">
+<div class="widget-title">Index</div>
+<div class="nav-buttons">
+<a href="#" class="nav-link-item">Waking up in the mirror <span style="font-size: 0.7rem; opacity: 0.7; display: block;">26 Oct</span></a>
+<a href="#" class="nav-link-item">Welcome <span style="font-size: 0.7rem; opacity: 0.7; display: block;">27 Oct</span></a>
+</div>
+</div>
+</aside>
+​</div>
+​<script>
+function toggleSidebar() {
+const sidebar = document.getElementById('sidebar');
+const closeBtn = document.getElementById('closeBtn');
+sidebar.classList.toggle('active');
+if (window.innerWidth <= 768) {
+closeBtn.style.display = sidebar.classList.contains('active') ? 'block' : 'none';
+}
+}
+</script>
+​</body>
 </html>
