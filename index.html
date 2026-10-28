@@ -135,30 +135,65 @@
       letter-spacing: 1px;
     }
 
-    .music-player {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      background: #ffffff;
+    /* PLAYER MUSICALE STILE HOWL INTEGRATO NELLA SIDEBAR */
+    .cosmic-player {
+      background: url('https://raw.githubusercontent.com/Seea-Star/Howl/refs/heads/main/c14b6fdbee2490ed3ff5a726d32d749f.gif') center/cover no-repeat;
       border: 2px solid #111111;
       border-radius: 12px;
-      padding: 10px;
+      overflow: hidden;
+      width: 100%;
+      position: relative;
     }
 
-    .music-controls {
+    .cosmic-player-inner {
+      background: rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(2px);
+      padding: 12px;
       display: flex;
-      gap: 6px;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+      justify-content: center;
     }
 
-    .music-btn {
-      background: #111111;
+    .player-screen {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 800;
       color: #ffffff;
-      border: none;
-      padding: 6px 10px;
-      border-radius: 8px;
+      text-align: center;
+      border-bottom: 1px dashed rgba(255,255,255,0.4);
+      padding-bottom: 4px;
+      width: 100%;
+      text-shadow: 1px 1px 3px #000;
+    }
+
+    .player-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .player-btn {
+      background: #ffffff;
+      color: #111111;
+      border: 2px solid #111;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      font-weight: 800;
+      font-size: 0.85rem;
       cursor: pointer;
-      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 2px 2px 0px #111;
+      transition: transform 0.15s ease, background 0.2s ease;
+    }
+
+    .player-btn:hover {
+      transform: scale(1.1);
+      background: #fcf8ee;
     }
 
     .nav-buttons {
@@ -248,6 +283,7 @@
       <button class="mobile-menu-toggle" onclick="toggleSidebar()">MENU ☰</button>
     </div>
 
+    <!-- Sostituisci "tua-copertina.png" con il link raw del tuo logo Diary di GitHub -->
     <div class="diary-cover-container">
       <img src="tua-copertina.png" alt="My Diary Cover" class="diary-cover-img">
     </div>
@@ -271,15 +307,19 @@
         <a href="https://cosmic-seea.neocities.org/Home" class="nav-btn btn-home-nav" style="display: block;">🏠 BACK TO HOME</a>
       </div>
 
+      <!-- WIDGET PLAYER MUSICALE AGGIORNATO -->
       <div class="widget-box">
         <div class="widget-title">🎵 Music Player</div>
-        <div class="music-player">
-          <span style="font-family: 'Quicksand', sans-serif; font-size: 0.75rem; font-weight: 800;">Cozy Track</span>
-          <div class="music-controls">
-            <button class="music-btn">◀</button>
-            <button class="music-btn">▶</button>
-            <button class="music-btn">❚❚</button>
+        <div class="cosmic-player">
+          <div class="cosmic-player-inner">
+            <div class="player-screen">Cozy Track</div>
+            <div class="player-controls">
+              <button class="player-btn" title="Play/Pause" onclick="let a=document.getElementById('bg-audio'); a.paused ? a.play() : a.pause();">♫</button>
+            </div>
           </div>
+          <audio id="bg-audio" loop>
+            <source src="https://raw.githubusercontent.com/Seea-Star/Howl/refs/heads/main/Joe%20Hisaishi%20-%20Merry-Go-Round%20of%20Life%20(from%20Howl%E2%80%99s%20Moving%20Castle).mp3" type="audio/mpeg">
+          </audio>
         </div>
       </div>
 
