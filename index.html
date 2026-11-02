@@ -12,11 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Nanum+Pen+Script&family=Quicksand:wght@600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       background-color: #111111;
@@ -38,7 +34,6 @@
       align-items: start;
     }
 
-    /* Copertina in alto centrata */
     .diary-cover-container {
       grid-column: 1 / -1;
       width: 100%;
@@ -52,9 +47,6 @@
       width: 450px;
       height: auto;
       display: block;
-      border: none;
-      box-shadow: none;
-      background: transparent;
     }
 
     .mobile-header-bar {
@@ -70,6 +62,7 @@
       gap: 20px;
     }
 
+    /* Stile della pagina del diario */
     .diary-entry {
       background-color: #F3EEDA;
       background-image: linear-gradient(rgba(180, 170, 150, 0.4) 1px, transparent 1px);
@@ -78,38 +71,15 @@
       border-radius: 20px;
       padding: 30px 25px;
       box-shadow: 6px 6px 0px #111111;
-      line-height: 32px;
+      min-height: 400px;
     }
 
-    .entry-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 15px;
-      line-height: 1;
-    }
-
-    .entry-title {
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: #111111;
-    }
-
-    .entry-date {
-      background: #111111;
-      color: #ffffff;
-      font-family: 'Quicksand', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 800;
-      padding: 6px 14px;
-      border-radius: 12px;
-      border: 2px solid #111111;
-      box-shadow: 2px 2px 0px #F3EEDA;
-    }
-
-    .entry-content {
-      font-size: 1.35rem;
-      color: #111111;
+    /* Cornice pulita per incorporare l'altra pagina */
+    .diary-frame {
+      width: 100%;
+      height: 550px;
+      border: none;
+      background: transparent;
     }
 
     .sidebar {
@@ -135,7 +105,6 @@
       letter-spacing: 1px;
     }
 
-    /* PLAYER MUSICALE STILE HOWL INTEGRATO NELLA SIDEBAR */
     .cosmic-player {
       background: url('https://raw.githubusercontent.com/Seea-Star/Howl/refs/heads/main/c14b6fdbee2490ed3ff5a726d32d749f.gif') center/cover no-repeat;
       border: 2px solid #111111;
@@ -214,6 +183,8 @@
       text-decoration: none;
       text-align: left;
       box-shadow: 2px 2px 0px #111111;
+      display: block;
+      cursor: pointer;
     }
 
     .btn-home-nav {
@@ -285,29 +256,23 @@
       <button class="mobile-menu-toggle" onclick="toggleSidebar()">MENU ☰</button>
     </div>
 
-    <!-- Sostituisci "tua-copertina.png" con il link raw del tuo logo Diary di GitHub -->
     <div class="diary-cover-container">
       <img src="https://raw.githubusercontent.com/Seea-Star/Cosmic-S-Diary/refs/heads/main/tua-copertina.png" alt="My Diary Cover" class="diary-cover-img">
     </div>
 
+    <!-- QUI DENTRO VIENE MOSTRATO IL CONTENUTO -->
     <main class="diary-container">
       <article class="diary-entry">
-        <div class="entry-header">
-          <h2 class="entry-title">Welcome</h2>
-          <span class="entry-date">27 OCT 2026</span>
-        </div>
-        <div class="entry-content">
-          <p>Welcome to my diary log! This is where I collect my sketches, thoughts, and progress about my art and stories. Grab a cup of tea and enjoy looking around!</p>
-        </div>
+        <!-- L'attributo name="diary-page" fa sì che i link laterali aprano la pagina qui dentro -->
+        <iframe src="welcome.html" name="diary-page" class="diary-frame"></iframe>
       </article>
     </main>
 
     <aside class="sidebar" id="sidebar">
       <button class="close-sidebar-btn" onclick="toggleSidebar()" id="closeBtn" style="display: none;">✕ CLOSE</button>
 
-      <a href="https://cosmic-seea.neocities.org/Home" class="nav-btn btn-home-nav"> <- HOME</a>
+      <a href="https://cosmic-seea.neocities.org/Home" class="nav-btn btn-home-nav">← HOME</a>
 
-      <!-- WIDGET PLAYER MUSICALE AGGIORNATO -->
       <div class="cosmic-player">
         <div class="cosmic-player-inner">
           <div class="player-screen">PLAYER MUSICALE</div>
@@ -323,8 +288,9 @@
       <div class="widget-box">
         <div class="widget-title">✎ᝰ. Indexˎˊ˗</div>
         <div class="nav-buttons">
-          <a href="#" class="nav-btn">📖 Waking up in the mirror <span style="font-size: 0.7rem; opacity: 0.7; display: block;">26 Oct</span></a>
-          <a href="#" class="nav-btn">📖 Welcome <span style="font-size: 0.7rem; opacity: 0.7; display: block;">27 Oct</span></a>
+          <!-- target="diary-page" dice al browser di caricare la pagina dentro al riquadro centrale -->
+          <a href="giorno-zucca.html" target="diary-page" class="nav-btn">📖 Pumpkin Tiramisu <span style="font-size: 0.7rem; opacity: 0.7; display: block;">26 Oct</span></a>
+          <a href="welcome.html" target="diary-page" class="nav-btn">📖 Welcome <span style="font-size: 0.7rem; opacity: 0.7; display: block;">27 Oct</span></a>
         </div>
       </div>
     </aside>
